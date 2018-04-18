@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.simplon.chefDOeuvre.model.LogementModel;
-import co.simplon.chefDOeuvre.repository.LogementRepository;
+import co.simplon.chefDOeuvre.repository.ILogementRepository;
 
 @Service
 public class LogementService {
 
 	@Autowired
-	private LogementRepository logementRepository;
+	private ILogementRepository logementRepository;
 
 	public Iterable<LogementModel> recupererLogements() throws Exception {
 		return logementRepository.findAll();

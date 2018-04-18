@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.simplon.chefDOeuvre.model.AgentModel;
-import co.simplon.chefDOeuvre.repository.AgentRepository;
+import co.simplon.chefDOeuvre.repository.IAgentRepository;
 
 @Service
 public class AgentService {
 
 	@Autowired
-	private AgentRepository agentRepository;
+	private IAgentRepository agentRepository;
 
 	public Iterable<AgentModel> recupererAgents() throws Exception {
 		return agentRepository.findAll();

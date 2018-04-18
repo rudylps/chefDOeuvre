@@ -50,7 +50,7 @@ public class LogementDAO {
 			sql = "SELECT * FROM logements"
 					+ "WHERE villeLogement LIKE ?"
 					+ "OR chambreLogement LIKE ?"
-					+ "Or salleDeBainLogement LIKE ?"
+					+ "OR salleDeBainLogement LIKE ?"
 					+ "OR toilettesLogement LIKE ?"
 					+ "OR cuisineLogement LIKE ?"
 					+ "OR sejourLogement LIKE ?"
