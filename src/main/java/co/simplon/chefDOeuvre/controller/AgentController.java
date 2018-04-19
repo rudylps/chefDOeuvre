@@ -1,7 +1,10 @@
 package co.simplon.chefDOeuvre.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.aspectj.weaver.loadtime.Agent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.simplon.chefDOeuvre.DAO.AgentDAO;
 import co.simplon.chefDOeuvre.model.AgentModel;
+import co.simplon.chefDOeuvre.model.LogementModel;
 import co.simplon.chefDOeuvre.service.AgentService;
 
 @RestController
@@ -101,6 +105,25 @@ public class AgentController {
 	AgentModel agentModifie = agentService.editerAgent(id, agentAModifier);
 	return ResponseEntity.ok(agentModifie);
 	
+	}
+	
+	// recuperer les logements d'un agent
+	@GetMapping(path = "/agent/{id}/logements")
+	public ResponseEntity<?> recupererLogementsLiesAgent(@PathVariable(value = "id") long id) throws Exception {
+		List<LogementModel> logements = null;
+		AgentModel agent = agentService.recupererAgent(id);
+		try {
+		logements = agentDAO.recupererLogementsLiesAgent(id);
+		}
+		catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			
+		}
+		if (agent == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(logements);
+
 	}
 
 }
